@@ -61,6 +61,9 @@ def open_everything():
         global names
         names = [line.strip() for line in names_file]
 
+    with open("dictionary/parsed_jokes.txt") as jokes_file:
+        global jokes
+        jokes = [line.strip() for line in jokes_file]
 
 open_everything()
 
@@ -126,17 +129,19 @@ class CommentsBot:
         random_prov = proverbs[randint(0, len(proverbs) - 1)]
         random_phrase = STATIC_PHRASES[randint(0, len(STATIC_PHRASES) - 1)]
         random_article_syn = articles[randint(0, len(articles) - 1)]
-        random_rant_syn = rants[randint(0, len(rants) - 1)]
+        random_joke = jokes[randint(0, len(jokes) - 1)]
 
+        random_rant_syn = rants[randint(0, len(rants) - 1)]
         first_segment = f"{random_det} {random_article_syn} is {random_adv} {random_adj}!"
-        last_segment = f"My latest pst at: {random_lander}"
+        last_segment = f"My latest PROFITABLE project at: {random_lander}"
 
         final_comment = f"{random_comm} "
         final_complement = f" {random_comp} "
         final_prov = f" {random_prov}. {last_segment}"
         final_phrase = f" {random_phrase}. {last_segment}"
 
-        response_list = [final_comment, final_complement, final_prov, final_phrase]
+        final_joke = f" {random_joke}. {last_segment}"
+        response_list = [final_comment, final_complement, final_prov, final_phrase, final_joke]
 
         return response_list[randint(0, len(response_list) - 1)]
 
@@ -193,7 +198,7 @@ class CommentsBot:
 
     def clean_up(self):
 
-        time.sleep(randint(1000, 4000))
+        time.sleep(randint(555, 3333))
 
         self.restart_application()
 
@@ -223,7 +228,7 @@ if __name__ == "__main__":
                 gls.sleep_time()
 
                 count += 1
-                if count == randint(50, 75):
+                if count == randint(22, 47):
                     break
 
         bot.clean_up()
