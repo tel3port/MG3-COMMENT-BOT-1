@@ -6,7 +6,6 @@ import heroku3
 import time
 import requests
 from urllib.request import urlparse, urljoin
-from bs4 import BeautifulSoup
 import colorama
 from http_request_randomizer.requests.proxy.requestProxy import RequestProxy
 import globals as gls
@@ -157,12 +156,12 @@ class CommentsBot:
         return landers[randint(0, len(landers) - 1)]
 
     def comment(self, random_post_url, random_comment, random_author, random_email, random_website):
-        comment_xpath = '//*[@id="comment"]'
-        author_xpath = '//*[@id="author"]'
-        email_xpath = '//*[@id="email"]'
-        url_xpath = '//*[@id="url"]'
-        submit_xpath = '//*[@id="comment-submit"]'
-        comment_frame_xpath = '//*[@id="jetpack_remote_comment"]'
+        comment_xpath = '//*[contains@id="comment"]'
+        author_xpath = '//*[contains@id="author"]'
+        email_xpath = '//*[contains@id="email"]'
+        url_xpath = '//*[contains@id="url"]'
+        submit_xpath = '//*[contains@id="comment-submit"]'
+        comment_frame_xpath = '//*[contains@id="comment"]'
         try:
 
             self.driver.get(random_post_url)
