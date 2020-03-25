@@ -80,13 +80,12 @@ external_urls = set()
 
 total_urls_visited = 0
 
-source_url = 'https://mintingnickels.com/'
-bot_name = "minting-nickels-master"
+
+wp_bot_name = "wp-mg3-comment-bot-1"
 
 
 class CommentsBot:
-    def __init__(self, bot_name, url, my_proxy):
-        self.url = url
+    def __init__(self, bot_name, my_proxy):
         self.my_proxy = my_proxy
         self.bot_name = bot_name
         chrome_options = webdriver.ChromeOptions()
@@ -108,9 +107,9 @@ class CommentsBot:
             "proxyType": "MANUAL",
 
         }
-        self.driver = webdriver.Chrome(executable_path='./chromedriver', options=chrome_options)
-        # chrome_options.add_argument("--headless")
-        # self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
+        # self.driver = webdriver.Chrome(executable_path='./chromedriver', options=chrome_options)
+        chrome_options.add_argument("--headless")
+        self.driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
         print("my ip address", my_proxy_address)
 
     def restart_application(self):
@@ -218,13 +217,13 @@ if __name__ == "__main__":
         proxies = req_proxy.get_proxy_list()  # this will create proxy list
         random_proxy = proxies[randint(0, len(proxies) - 1)]
 
-        bot = CommentsBot(bot_name, source_url, random_proxy)
+        bot = CommentsBot(wp_bot_name, random_proxy)
 
         # makes a single comment for each link per each iteration
         # breaks the cycle after a given number of comments to force script tp get another ip address
         if len(parsed_links_set) > 0:
             for link in list(parsed_links_set):
-                bot.comment(link, bot.response_generator(), bot.random_name_getter(), bot.random_email_getter(),bot.random_lander_getter())
+                bot.comment(link, bot.response_generator(), bot.random_name_getter(), bot.random_email_getter(), bot.random_lander_getter())
                 gls.sleep_time()
 
                 count += 1
