@@ -161,7 +161,7 @@ class CommentsBot:
         email_xpath = '//*[@id="email"]'
         url_xpath = '//*[@id="url"]'
         submit_xpath = '//*[@id="comment-submit"]'
-        comment_frame_xpath = '//*[contains@id="comment"]'
+        comment_frame_xpath = '//*[@id="jetpack_remote_comment"]'
         try:
 
             self.driver.get(random_post_url)
