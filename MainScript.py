@@ -228,7 +228,7 @@ if __name__ == "__main__":
                 gls.sleep_time()
 
                 count += 1
-                if count == randint(22, 47):
+                if count == randint(10, 22):
                     break
 
         bot.clean_up()
